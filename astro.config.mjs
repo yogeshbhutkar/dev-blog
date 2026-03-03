@@ -10,8 +10,6 @@ import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 
-import vercel from '@astrojs/vercel';
-
 // https://astro.build/config
 export default defineConfig({
   site: process.env.SITE_URL || 'https://localhost:4321',
@@ -34,8 +32,6 @@ export default defineConfig({
           },
       }
       }), react(), keystatic(), pagefind()],
-
-  adapter: vercel(),
 
   server: {
     port: 3000,
