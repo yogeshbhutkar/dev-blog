@@ -36,4 +36,9 @@ export default defineConfig({
       }), react(), keystatic(), pagefind()],
 
   adapter: vercel(),
+
+  server: {
+    port: 3000,
+    host: true,
+  }
 });
