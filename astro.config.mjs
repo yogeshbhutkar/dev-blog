@@ -11,6 +11,8 @@ import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import node from '@astrojs/node';
 
+const port = Number.parseInt(process.env.PORT ?? '');
+
 // https://astro.build/config
 export default defineConfig({
   adapter: node({
@@ -39,7 +41,7 @@ export default defineConfig({
       }), react(), keystatic(), pagefind()],
 
   server: {
-    port: 3000,
+    port: Number.isNaN(port) ? 4321 : port,
     host: true,
   }
 });
