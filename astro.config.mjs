@@ -9,14 +9,9 @@ import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
-import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: node({
-    mode: 'standalone',
-  }),
-  
   site: process.env.SITE_URL || 'https://localhost:4321',
 
   vite: {
