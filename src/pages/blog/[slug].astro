@@ -1,5 +1,9 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import {
+	getCollection,
+	type CollectionEntry,
+	render,
+} from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import PostTags from "@/components/PostTags.astro";
 import PostCoverImage from "@/components/PostCoverImage.astro";
@@ -15,14 +19,14 @@ export const getStaticPaths = async () => {
 
 	const headings = await Promise.all(
 		blogs.map((entry) =>
-			entry.render().then(({ headings }) => headings),
+			render(entry).then(({ headings }) => headings),
 		),
 	);
 
 	return blogs.map((blog, index) => {
 		return {
 			params: {
-				slug: blog.slug,
+				slug: blog.id,
 			},
 			props: { blog, headings: headings[index] },
 		};
@@ -35,12 +39,12 @@ type Props = {
 };
 
 const { blog, headings } = Astro.props;
-const { Content } = await blog.render();
+const { Content } = await render(blog);
 
 const { title, excerpt, coverImage, publishedDate, tags, author, avatar } =
 	blog.data;
 
-const wordCount = blog.body?.split(/\s+/).length;
+const wordCount = blog.body?.split(/\s+/).length || 0;
 
 const coverImageURL =
 	typeof coverImage === "string" ? coverImage : coverImage?.src;
