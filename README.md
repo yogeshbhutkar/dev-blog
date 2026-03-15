@@ -2,21 +2,19 @@
 
 A minimal, performant, and beautifully animated personal blog built with [Astro](https://astro.build), [Tailwind CSS v4](https://tailwindcss.com), and [Keystatic CMS](https://keystatic.com).
 
-![Astro](https://img.shields.io/badge/Astro-5.x-ff5d01?logo=astro&logoColor=white)
+![Astro](https://img.shields.io/badge/Astro-6.x-ff5d01?logo=astro&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-38bdf8?logo=tailwindcss&logoColor=white)
 ![Bun](https://img.shields.io/badge/Bun-latest-f9f1e1?logo=bun&logoColor=black)
 
 ## ✨ Features
 
-- **Astro 5** — Static site generation with island architecture
+- **Astro 6** — Static site generation with island architecture
 - **Tailwind CSS v4** — Utility-first styling with `@tailwindcss/vite`
 - **Keystatic CMS** — Git-based content management with a visual editor
 - **Content Collections** — Type-safe blog posts and projects
 - **View Transitions** — Smooth client-side page navigation
 - **Pagefind** — Static search with zero external dependencies
-- **Lighthouse CI** — Automated performance, accessibility, and SEO audits
 - **Responsive Design** — Mobile-first, works on all screen sizes
-- **Accessibility** — `prefers-reduced-motion` support
 
 ## 🚀 Quick Start
 
