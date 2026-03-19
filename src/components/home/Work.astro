@@ -75,10 +75,12 @@ const { detailed = false } = Astro.props;
 
 	{
 		!detailed && (
-			<GitHubCalendarWrapper
-				client:only="react"
-				username="yogeshbhutkar"
-			/>
+			<div class="min-h-52">
+				<GitHubCalendarWrapper
+					client:only="react"
+					username="yogeshbhutkar"
+				/>
+			</div>
 		)
 	}
 </section>
