@@ -27,11 +27,14 @@ const isBlogPage = Astro.url.pathname.startsWith("/blog/");
 		<div class="flex items-center gap-x-2">
 			<a
 				href="/blog"
-				class="text-sm decoration-blue-400 decoration-wavy decoration-2 underline-offset-2 hover:underline dark:decoration-blue-300"
+				class="hidden text-sm decoration-blue-400 decoration-wavy decoration-2 underline-offset-2 hover:underline md:inline-block dark:decoration-blue-300"
 			>
 				Writings
 			</a>
-			<span class="pointer-events-none select-none">/</span>
+			<span
+				class="pointer-events-none hidden select-none md:inline-block"
+				>/</span
+			>
 			<a href={SOCIALS.github} target="_blank" aria-label="GitHub">
 				<Github height={16} width={16} />
 			</a>

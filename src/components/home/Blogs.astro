@@ -4,9 +4,10 @@ import { getCollection } from "astro:content";
 
 interface Props {
 	count?: number;
+	stagger?: boolean;
 }
 
-const { count } = Astro.props;
+const { count, stagger = false } = Astro.props;
 
 const blogs = (await getCollection("blogs"))
 	.sort(
@@ -17,7 +18,7 @@ const blogs = (await getCollection("blogs"))
 	.slice(0, count || undefined);
 ---
 
-<section style="--stagger-index: 2">
+<section>
 	<div class="mb-3 flex items-center justify-between">
 		<h1 class="max-sm:text-md mb-1 text-left font-medium">Writings</h1>
 		{
@@ -31,5 +32,6 @@ const blogs = (await getCollection("blogs"))
 			)
 		}
 	</div>
-	<PostList blogs={blogs} />
+
+	<PostList blogs={blogs} stagger={stagger} />
 </section>
