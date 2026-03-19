@@ -1,11 +1,13 @@
 import { GitHubCalendar } from "react-github-calendar";
 import { useState, useEffect } from "react";
+import { flushSync } from "react-dom";
 
 export default function GitHubCalendarWrapper({
 	username,
 }: {
 	username: string;
 }) {
+	const [mounted, setMounted] = useState(true);
 	const [colorScheme, setColorScheme] = useState<"light" | "dark">(
 		() => {
 			return (
@@ -23,14 +25,29 @@ export default function GitHubCalendarWrapper({
 					: "light",
 			);
 		});
-
 		observer.observe(document.body, {
 			attributes: true,
 			attributeFilter: ["class"],
 		});
 
-		return () => observer.disconnect();
+		const handleBeforeSwap = () => {
+			flushSync(() => setMounted(false));
+		};
+
+		// When Astro does a partial page swap, we need to unmount the calendar to prevent
+		// hydration issues, and errors with CalendarContainer not being found.
+		document.addEventListener("astro:before-swap", handleBeforeSwap);
+
+		return () => {
+			observer.disconnect();
+			document.removeEventListener(
+				"astro:before-swap",
+				handleBeforeSwap,
+			);
+		};
 	}, []);
+
+	if (!mounted) return null;
 
 	return (
 		<GitHubCalendar
