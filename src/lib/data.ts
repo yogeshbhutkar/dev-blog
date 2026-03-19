@@ -1,5 +1,5 @@
 export const CURRENT_WORK_EXPERIENCE =
-	"I'm working at rtCamp, where I focus on developing full-stack solutions using React, Node.js, and WordPress. My role involves architecting scalable web applications, contributing to open-source projects, and collaborating with cross-functional teams to deliver high-performance digital experiences.";
+	"I'm currently working as a software engineer at rtCamp, where I focus on developing full-stack solutions using React, Node.js, and WordPress. My role involves architecting scalable web applications, contributing to open-source projects, and collaborating with cross-functional teams to deliver high-performance digital experiences.";
 
 export const WORK_EXPERIENCE = [
 	{
