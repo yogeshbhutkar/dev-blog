@@ -1,5 +1,5 @@
 export const CURRENT_WORK_EXPERIENCE =
-	"I'm currently working as a Software Engineer at rtCamp, where I focus on developing full-stack solutions using React, Node.js, and WordPress. My role involves architecting scalable web applications, contributing to open-source projects, and collaborating with cross-functional teams to deliver high-performance digital experiences.";
+	"I'm working at rtCamp, where I focus on developing full-stack solutions using React, Node.js, and WordPress. My role involves architecting scalable web applications, contributing to open-source projects, and collaborating with cross-functional teams to deliver high-performance digital experiences.";
 
 export const WORK_EXPERIENCE = [
 	{
@@ -12,7 +12,7 @@ export const WORK_EXPERIENCE = [
 		excerpt:
 			"At rtCamp, I develop full-stack solutions leveraging React, Node.js, and WordPress to architect scalable, high-performance web applications. I regularly contribute to open-source projects and collaborate with cross-functional teams to deliver client-focused digital experiences.",
 		responsibilities: [
-			"Contributed to the open-source React-based Gutenberg editor, core to WordPress, which powers 43% of the web. Delivered feature enhancements, bug fixes, and maintained Jest and Playwright tests. Recognized as a noteworthy contributor in the WP 6.8 release.",
+			"Contributed to the open-source React-based Gutenberg editor, core to WordPress, which powers 43% of the web. Delivered feature enhancements, bug fixes, and maintained Jest and Playwright tests. Recognized as a noteworthy contributor in the WP 6.8 and 6.9 release.",
 			"Architected and developed a scalable LLM pipeline, leveraging the FastAPI framework and Pub/Sub architecture to process large-scale data and enable real-time model interaction.",
 		],
 	},
@@ -61,6 +61,12 @@ export const WORK_EXPERIENCE = [
 
 export const PROJECTS = [
 	{
+		name: "Shotline 🎬",
+		description:
+			"A fast, minimal platform to record, upload, share, and manage videos—powered by Next.js, Tailwind CSS, and Supabase.",
+		url: "https://shotline.yogeshbhutkar.com/",
+	},
+	{
 		name: "Kiri 🌿",
 		description:
 			"A minimalistic personal blogging space built with Astro and Tailwind CSS. Comes with light & dark mode, and available as a public template.",
@@ -68,24 +74,18 @@ export const PROJECTS = [
 		repo: "https://github.com/yogeshbhutkar/kiri",
 	},
 	{
-		name: "Minilink 🔗 - A simple link shortner",
-		description: "A lightning-fast URL shortener built with Next.js, Tailwind, and Bun ⚡ Short links. Instant redirects. Zero bloat.",
+		name: "Minilink 🔗",
+		description:
+			"A lightning-fast URL shortener built with Next.js, Tailwind, and Bun ⚡ Short links. Instant redirects. Zero bloat.",
 		url: "https://minilink.yogeshbhutkar.com/",
 		repo: "https://github.com/yogeshbhutkar/minilink",
 	},
 	{
-		name: "ChatOn",
+		name: "ChatOn 💬",
 		description:
 			"A chat application built with Flutter and Firebase for real-time messaging.",
 		url: undefined,
 		repo: "https://github.com/yogeshbhutkar/ChatOn",
-	},
-	{
-		name: "Node.js reverse proxy server",
-		description:
-			"A simple Node.js reverse proxy prototype inspired by NGINX, designed for forwarding HTTP requests with minimal setup.",
-		url: undefined,
-		repo: "https://github.com/yogeshbhutkar/node-reverse-proxy",
 	},
 ];
 
