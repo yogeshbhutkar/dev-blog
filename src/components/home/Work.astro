@@ -1,6 +1,7 @@
 ---
 import { WORK_EXPERIENCE, CURRENT_WORK_EXPERIENCE } from "@/lib/data";
 import ExternalLink from "@/icons/external-link.astro";
+import GitHubCalendarWrapper from "@/components/react/GithubCalendarWrapper";
 
 interface Props {
 	detailed?: boolean;
@@ -9,7 +10,7 @@ interface Props {
 const { detailed = false } = Astro.props;
 ---
 
-<section style="--stagger-index: 1">
+<section style="--stagger-index: 1" class="flex flex-col gap-y-2">
 	{
 		!detailed && (
 			<>
@@ -69,6 +70,15 @@ const { detailed = false } = Astro.props;
 					))}
 				</div>
 			</>
+		)
+	}
+
+	{
+		!detailed && (
+			<GitHubCalendarWrapper
+				client:only="react"
+				username="yogeshbhutkar"
+			/>
 		)
 	}
 </section>
