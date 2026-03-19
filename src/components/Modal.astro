@@ -18,7 +18,7 @@ const { id } = Astro.props;
 		--pagefind-ui-border-radius: 1rem;
 		--pagefind-ui-image-border-radius: 8px;
 		--pagefind-ui-image-box-ratio: 3 / 2;
-		--pagefind-ui-font: "Outfit", sans-serif;
+		--pagefind-ui-font: "Sentient-Variable", serif;
 	}
 
 	body.dark {
@@ -30,7 +30,7 @@ const { id } = Astro.props;
 	}
 
 	.pagefind-ui form .pagefind-ui__search-input {
-		font-family: "Outfit", sans-serif;
+		font-family: "Sentient-Variable", serif;
 		font-weight: 500;
 		font-size: 1rem;
 		border-radius: 0.5rem;
@@ -65,34 +65,34 @@ const { id } = Astro.props;
 	}
 
 	@keyframes dialog-in {
-        from {
-            opacity: 0;
+		from {
+			opacity: 0;
 			filter: blur(15px);
-        }
-        to {
-            opacity: 1;
+		}
+		to {
+			opacity: 1;
 			filter: blur(0px);
-        }
-    }
+		}
+	}
 
-    @keyframes backdrop-in {
-        from {
-            opacity: 0;
+	@keyframes backdrop-in {
+		from {
+			opacity: 0;
 			filter: blur(15px);
-        }
-        to {
-            opacity: 1;
+		}
+		to {
+			opacity: 1;
 			filter: blur(0px);
-        }
-    }
+		}
+	}
 
-    .open\:animate-in[open] {
-        animation: dialog-in 0.2s ease-in-out forwards;
-    }
+	.open\:animate-in[open] {
+		animation: dialog-in 0.2s ease-in-out forwards;
+	}
 
-    .open\:animate-in[open]::backdrop {
-        animation: backdrop-in 0.2s ease-in-out forwards;
-    }
+	.open\:animate-in[open]::backdrop {
+		animation: backdrop-in 0.2s ease-in-out forwards;
+	}
 </style>
 
 <button>
@@ -101,7 +101,7 @@ const { id } = Astro.props;
 
 <dialog
 	id={id}
-	class="bg-background border-muted/30 max-h-[50%] min-h-[50%] w-[90%] border p-5 sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[30%] xl:min-w-[600px] backdrop:bg-background/50 backdrop:backdrop-blur-sm open:animate-in"
+	class="bg-background border-muted/30 backdrop:bg-background/50 open:animate-in max-h-[50%] min-h-[50%] w-[90%] border p-5 backdrop:backdrop-blur-sm sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[30%] xl:min-w-150"
 >
 	<div>
 		<slot name="main" />

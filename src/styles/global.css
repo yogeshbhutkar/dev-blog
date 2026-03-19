@@ -4,20 +4,20 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
-	font-family: "Outfit", sans-serif;
-	src: url("/fonts/outfit.woff2") format("woff2");
-	font-weight: normal;
-	font-style: normal;
-	font-display: swap;
-}
-
-@font-face {
 	font-family: "Island Moments";
 	src: url("/fonts/island-moments.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
 	font-style: normal;
 	font-display: swap;
+}
+
+@font-face {
+	font-family: "Sentient-Variable";
+	src: url("/fonts/Sentient-Variable.woff2") format("woff2");
+	font-weight: 200 700;
+	font-display: swap;
+	font-style: normal;
 }
 
 @theme {
@@ -44,7 +44,7 @@
 }
 
 body {
-	font-family: "Outfit", sans-serif;
+	font-family: "Sentient-Variable", serif;
 }
 
 h1,
@@ -53,7 +53,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: "Inter", sans-serif;
+	font-family: "Sentient-Variable", sans-serif;
 }
 
 .info-list > *:not(:last-child)::after {
