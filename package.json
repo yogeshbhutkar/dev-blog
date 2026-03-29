@@ -13,7 +13,7 @@
 		"@astrojs/react": "5.0.0",
 		"@astrojs/rss": "4.0.17",
 		"@astrojs/sitemap": "3.7.1",
-		"@astrojs/vercel": "10.0.0",
+		"@astrojs/vercel": "10.0.3",
 		"@codesandbox/sandpack-react": "^2.20.0",
 		"@codesandbox/sandpack-themes": "^2.0.21",
 		"@keystatic/astro": "^5.0.6",
