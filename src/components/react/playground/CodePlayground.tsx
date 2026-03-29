@@ -43,6 +43,7 @@ export default function CodePlayground({
 	dependencies?: Record<string, string>;
 }) {
 	const [isActive, setIsActive] = useState(false);
+	const [mountKey, setMountKey] = useState(0);
 
 	/**
 	 * Listen for the "astro:before-swap" event to deactivate the playground
@@ -52,6 +53,7 @@ export default function CodePlayground({
 	useEffect(() => {
 		const handleBeforeSwap = () => {
 			setIsActive(false);
+			setMountKey((key) => key + 1);
 		};
 
 		document.addEventListener("astro:before-swap", handleBeforeSwap);
@@ -62,9 +64,16 @@ export default function CodePlayground({
 			);
 	}, []);
 
+	useEffect(() => {
+		if (isActive) {
+			injectSandpackStyles();
+		}
+	}, [isActive]);
+
 	if (isActive) {
 		return (
 			<SandpackProvider
+				key={mountKey}
 				files={files}
 				theme={atomDark}
 				template={template}
@@ -92,8 +101,8 @@ export default function CodePlayground({
 			<button
 				className="bg-background text-muted hover:bg-muted/10 border-border group flex cursor-pointer flex-col items-center justify-center rounded-md border p-4 text-center text-sm hover:border-blue-400 dark:hover:border-blue-300"
 				onClick={() => {
-					injectSandpackStyles();
 					setIsActive((prev) => !prev);
+					setMountKey((key) => key + 1);
 				}}
 			>
 				<PlayIcon
