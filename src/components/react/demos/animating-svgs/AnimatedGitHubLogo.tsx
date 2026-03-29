@@ -38,7 +38,18 @@ function AnimatedGitHubLogo() {
 
 	useEffect(() => {
 		// Detect if the device is touch-enabled to disable hover animations
-		setIsTouch(window.matchMedia("(hover: none)").matches);
+		const mediaQuery = window.matchMedia("(hover: none)");
+		setIsTouch(mediaQuery.matches);
+
+		// Listen for changes in the media query to update the state if the device capabilities change
+		const handleChange = (e: MediaQueryListEvent) => {
+			setIsTouch(e.matches);
+			return;
+		};
+
+		mediaQuery.addEventListener("change", handleChange);
+		return () =>
+			mediaQuery.removeEventListener("change", handleChange);
 	}, []);
 
 	return (
@@ -58,7 +69,10 @@ function AnimatedGitHubLogo() {
 				strokeWidth="1.5"
 				strokeLinecap="butt"
 				strokeLinejoin="round"
+				role="img"
 			>
+				<title>Github Logo</title>
+
 				{/* Outline */}
 				<motion.path
 					d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
@@ -72,12 +86,14 @@ function AnimatedGitHubLogo() {
 				></motion.path>
 			</svg>
 
-			<motion.span
-				className="absolute bottom-2 hidden rounded-md bg-white px-4 py-1 text-black md:block"
-				variants={hintVariants}
-			>
-				Hover me
-			</motion.span>
+			{!isTouch && (
+				<motion.span
+					className="absolute bottom-2 rounded-md bg-white px-4 py-1 text-black"
+					variants={hintVariants}
+				>
+					Hover me
+				</motion.span>
+			)}
 		</motion.div>
 	);
 }
