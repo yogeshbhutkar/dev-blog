@@ -18,6 +18,7 @@
 	--color-muted: #0a0a0a;
 	--color-code: #24292e;
 	--color-code-text: #f6f8fa;
+	--color-border: #e5e7eb;
 }
 
 @layer theme {
@@ -28,6 +29,7 @@
 		--color-muted: #cacaca;
 		--color-code: #f6f8fa;
 		--color-code-text: #24292e;
+		--color-border: #4b5563;
 	}
 }
 
