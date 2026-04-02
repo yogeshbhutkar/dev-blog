@@ -33,6 +33,10 @@
 	}
 }
 
+html {
+	scrollbar-gutter: stable;
+}
+
 body {
 	font-family: "Sentient-Variable", serif;
 }
