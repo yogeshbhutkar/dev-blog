@@ -12,6 +12,7 @@ import Comments from "@/components/Comments.astro";
 import type { MarkdownHeading } from "astro";
 import TableOfContents from "@/components/TableOfContents.astro";
 import ReadingIndicator from "@/components/ReadingIndicator.astro";
+import ScrollToTop from "@/components/ScrollToTop.astro";
 import { slide } from "astro:transitions";
 
 export const getStaticPaths = async () => {
@@ -88,4 +89,6 @@ const coverImageURL =
 			</div>
 		</article>
 	</main>
+
+	<ScrollToTop />
 </Layout>

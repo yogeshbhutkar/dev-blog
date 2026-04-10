@@ -1,0 +1,48 @@
+---
+import ChevronTop from "@/icons/chevron-top.astro";
+---
+
+<button
+	id="scroll-to-top"
+	class="bg-foreground/80 hover:bg-foreground text-background invisible fixed right-8 bottom-8 cursor-pointer rounded-full p-3 opacity-0 shadow-lg transition-all duration-300 hover:shadow-xl"
+	title="Scroll to top"
+>
+	<ChevronTop class="h-5 w-5" />
+</button>
+
+<script>
+	const SCROLL_THRESHOLD = 300;
+
+	const setupScrollToTopButton = () => {
+		const scrollToTopBtn = document.getElementById("scroll-to-top");
+		if (!scrollToTopBtn) {
+			return;
+		}
+
+		// Show/hide button based on scroll position
+		window.addEventListener(
+			"scroll",
+			() => {
+				const shouldShow = window.scrollY > SCROLL_THRESHOLD;
+
+				scrollToTopBtn.classList.toggle("opacity-0", !shouldShow);
+				scrollToTopBtn.classList.toggle("invisible", !shouldShow);
+				scrollToTopBtn.classList.toggle("opacity-100", shouldShow);
+				scrollToTopBtn.classList.toggle("visible", shouldShow);
+			},
+			// Only listen to scroll event without stopping/interfering with it.
+			{ passive: true },
+		);
+
+		// Scroll to top on click
+		scrollToTopBtn.addEventListener("click", () => {
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth",
+			});
+		});
+	};
+
+	setupScrollToTopButton();
+	document.addEventListener("astro:page-load", setupScrollToTopButton);
+</script>
