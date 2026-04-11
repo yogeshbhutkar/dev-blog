@@ -16,8 +16,8 @@
 	--color-background: #ffffff;
 	--color-foreground: #050505;
 	--color-muted: #0a0a0a;
-	--color-code: #24292e;
-	--color-code-text: #f6f8fa;
+	--color-code: #f6f8fa;
+	--color-code-text: #24292e;
 	--color-border: #e5e7eb;
 }
 
@@ -27,8 +27,8 @@
 		--color-background: #050505;
 		--color-foreground: #fafafa;
 		--color-muted: #cacaca;
-		--color-code: #f6f8fa;
-		--color-code-text: #24292e;
+		--color-code: #24292e;
+		--color-code-text: #f6f8fa;
 		--color-border: #4b5563;
 	}
 }
@@ -64,6 +64,13 @@ h6 {
 	padding: 0.2rem 0.4rem;
 	margin: 0 0.2rem;
 	border-radius: 0.375rem;
+	font-weight: normal;
+	border: 1px solid var(--color-border);
+}
+
+.prose code::before,
+.prose code::after {
+	display: none;
 }
 
 /* Shiki Theming */
