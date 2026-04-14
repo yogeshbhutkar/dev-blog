@@ -1,6 +1,5 @@
 {
   "lockfileVersion": 1,
-  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "astro-blog",
@@ -27,6 +26,7 @@
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
         "react-github-calendar": "^5.0.5",
+        "slugify": "^1.6.9",
         "tailwindcss": "^4.2.2",
       },
       "devDependencies": {
@@ -1457,6 +1457,8 @@
     "slate-history": ["slate-history@0.86.0", "", { "dependencies": { "is-plain-object": "^5.0.0" }, "peerDependencies": { "slate": ">=0.65.3" } }, "sha512-OxObL9tbhgwvSlnKSCpGIh7wnuaqvOj5jRExGjEyCU2Ke8ctf22HjT+jw7GEi9ttLzNTUmTEU3YIzqKGeqN+og=="],
 
     "slate-react": ["slate-react@0.91.11", "", { "dependencies": { "@juggle/resize-observer": "^3.4.0", "@types/is-hotkey": "^0.1.1", "@types/lodash": "^4.14.149", "direction": "^1.0.3", "is-hotkey": "^0.1.6", "is-plain-object": "^5.0.0", "lodash": "^4.17.4", "scroll-into-view-if-needed": "^2.2.20", "tiny-invariant": "1.0.6" }, "peerDependencies": { "react": ">=16.8.0", "react-dom": ">=16.8.0", "slate": ">=0.65.3" } }, "sha512-2nS29rc2kuTTJrEUOXGyTkFATmTEw/R9KuUXadUYiz+UVwuFOUMnBKuwJWyuIBOsFipS+06SkIayEf5CKdARRQ=="],
+
+    "slugify": ["slugify@1.6.9", "", {}, "sha512-vZ7rfeehZui7wQs438JXBckYLkIIdfHOXsaVEUMyS5fHo1483l1bMdo0EDSWYclY0yZKFOipDy4KHuKs6ssvdg=="],
 
     "smol-toml": ["smol-toml@1.6.0", "", {}, "sha512-4zemZi0HvTnYwLfrpk/CF9LOd9Lt87kAt50GnqhMpyF9U3poDAP2+iukq2bZsO/ufegbYehBkqINbsWxj4l4cw=="],
 
