@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Post from "@/components/Post.astro";
+import Ghost from "@/icons/ghost.astro";
 
 type Props = {
 	blogs: CollectionEntry<"blogs">[];
@@ -12,8 +13,19 @@ const { blogs, stagger } = Astro.props;
 
 <div class=`group space-y-2 ${stagger ? "stagger-container" : ""}`>
 	{
-		blogs.map((blog, idx) => (
-			<Post blog={blog} style={`--stagger-index:${idx}`} />
-		))
+		blogs.length === 0 ? (
+			<div class="mx-auto my-5 flex h-[50vh] flex-col items-center justify-center text-center max-sm:px-4 sm:max-w-sm md:max-w-xl lg:max-w-3xl">
+				<Ghost
+					class="mx-auto my-2 animate-bounce hover:animate-pulse"
+					height={64}
+					width={64}
+				/>
+				<p class="text-muted text-center">No writings found.</p>
+			</div>
+		) : (
+			blogs.map((blog, idx) => (
+				<Post blog={blog} style={`--stagger-index:${idx}`} />
+			))
+		)
 	}
 </div>
