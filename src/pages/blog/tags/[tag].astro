@@ -1,0 +1,76 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import PostList from "@/components/PostList.astro";
+import type { CollectionEntry } from "astro:content";
+import { slugifyTag } from "@/lib/utils";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+	const blogs = await getCollection("blogs");
+
+	const tagMap = new Map<string, string>();
+
+	// Create a mapping of slugified tags to their original display names
+	for (const blog of blogs) {
+		// A blog can have multiple tags, so we iterate through each tag and add it to the mapw
+		for (const tag of blog.data.tags) {
+			const slug = slugifyTag(tag);
+			if (!tagMap.has(slug)) {
+				tagMap.set(slug, tag);
+			}
+		}
+	}
+
+	// Generate paths for each unique tag
+	return [...tagMap.entries()].map(([slug, displayName]) => {
+		const posts = blogs
+			.filter((blog) =>
+				blog.data.tags.some((t) => slugifyTag(t) === slug),
+			)
+			.sort(
+				(a, b) =>
+					new Date(b.data.publishedDate).valueOf() -
+					new Date(a.data.publishedDate).valueOf(),
+			);
+
+		return {
+			params: { tag: slug },
+			props: { posts, tagName: displayName },
+		};
+	});
+};
+
+type Props = {
+	posts: CollectionEntry<"blogs">[];
+	tagName: string;
+};
+
+const { posts, tagName } = Astro.props as Props;
+---
+
+<Layout
+	title={`${tagName} | Yogesh Bhutkar`}
+	description={`Blog posts tagged with ${tagName}`}
+>
+	<main
+		id="main-content"
+		class="mx-auto my-5 flex flex-col gap-7 font-light max-sm:px-6 sm:max-w-sm md:max-w-xl lg:max-w-2xl"
+	>
+		<section>
+			<div class="mb-3 flex items-center justify-between">
+				<h1 class="max-sm:text-md mb-1 text-center font-medium">
+					#{tagName}
+				</h1>
+				<a
+					href="/blog"
+					class="text-sm font-light decoration-blue-400 decoration-wavy decoration-2 underline-offset-4 hover:underline max-sm:underline dark:decoration-blue-300"
+				>
+					All writings
+				</a>
+			</div>
+
+			<PostList blogs={posts} stagger />
+		</section>
+	</main>
+</Layout>

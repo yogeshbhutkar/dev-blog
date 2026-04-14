@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { slugifyTag } from "@/lib/utils";
 
 interface Props {
 	tags: CollectionEntry<"blogs">["data"]["tags"];
@@ -12,9 +13,12 @@ const { tags } = Astro.props;
 	tags && (
 		<div class="mt-2 flex flex-wrap justify-center gap-2">
 			{tags.map((tag) => (
-				<span class="text-muted/70 border-muted/20 hover:bg-muted/15 hover:text-foreground inline-block rounded-full border px-3 py-1 text-sm">
+				<a
+					class="text-muted/70 border-muted/20 hover:bg-muted/15 hover:text-foreground inline-block rounded-full border px-3 py-1 text-sm"
+					href={`/blog/tags/${slugifyTag(tag)}`}
+				>
 					#{tag}
-				</span>
+				</a>
 			))}
 		</div>
 	)
