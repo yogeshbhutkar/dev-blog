@@ -1,0 +1,66 @@
+---
+title: "OpenCode + Ollama Cloud: A Week as My Coding Partner"
+author: yogeshbhutkar
+avatar: ./images/yogesh-bhutkar.webp
+tags: ["AI Agents", "ollama", "opencode", "tools"]
+featured: false
+publishedDate: 2026-04-17
+coverImage: https://res.cloudinary.com/dpz3botw9/image/upload/q_auto/f_auto/v1776430634/dev%20blog/open-code-banner-blog_wrjvss.webp
+excerpt: After cycling through countless AI tools, OpenCode paired with Ollama Cloud is the first setup that actually feels like pair programming. Less autocorrect, more patient coworker.
+---
+
+## Introduction
+
+After working with GitHub Copilot and Claude extensively, I decided to test out some open source models, especially after hearing about them competing with frontier models. Specifically, at the time of writing this, models such as GLM 5.1, Kimi-k2.5, and Minimax-m2.7, amongst several others, have gained quite a bit of popularity. And rightly so—for instance, the GLM 5.1 model has proven to be quite capable in Z.ai's benchmarks.
+
+In their benchmarks for SWE-Bench Pro, which tests complex engineering tasks, the GLM 5.1 model is quite a bit ahead of the legendary Opus 4.6, and it's neck and neck in other benchmarks. It's also decently cost-optimized.
+
+<figure>
+  <img src="https://res.cloudinary.com/dpz3botw9/image/upload/q_auto/f_auto/v1776166447/dev%20blog/ollama-swe-benchmark_vn702i.webp" alt="SWE-Bench Pro" width="730" height="380" />
+  <figcaption style={{ textAlign: "center", fontStyle: "italic", marginTop: "0.5em" }}>
+    Courtesy: Z.ai's benchmarks, which can be found <a href="https://z.ai/blog/glm-5.1" target="_blank" rel="noopener noreferrer">here</a>.
+  </figcaption>
+</figure>
+
+I therefore decided to try out these models to determine how they perform as a daily driver for me.
+
+## The Setup
+
+### Ollama Cloud
+
+Running these models locally requires quite a lot of resources and therefore wasn't an option for me. Instead, I went with [Ollama Cloud](https://docs.ollama.com/cloud), which is a platform that allows you to run these models in the cloud and access them via an API. It's quite easy to set up, and they have a decent selection of models to choose from. I selected the GLM 5.1 model, which is one of the best performing models in the benchmarks.
+
+### OpenCode
+
+[OpenCode](https://opencode.ai/) is an open-source AI coding agent which supports connecting with Ollama Cloud. However, Ollama Cloud also supports connecting with Copilot Chat, which you can learn more about here: [Link](https://docs.ollama.com/integrations/vscode).
+
+OpenCode also offers a desktop app now; however, personally, the terminal version works just fine, and I prefer it over the desktop app. The terminal version is quite lightweight and doesn't require any additional resources, which is a plus for me.
+
+## My Experience
+
+Running OpenCode with an Ollama Cloud model is quite straightforward. You can just run the following command in your terminal:
+
+```bash
+ollama launch opencode
+```
+
+You'll then be prompted to select a model. I went ahead with the GLM 5.1 Cloud model. There are also local models you could try.
+
+This should also work with Ollama Cloud's free tier at the time of writing this. This may get changed in the future, however, for decent usage, you could consider a paid plan.
+
+Once you select the model, you can start using OpenCode as your coding partner. You can ask it to generate code, explain code, or even debug code. It's quite responsive and provides decent explanations for the code it generates.
+
+Although, in my experience, I found it to be a bit slower than Opus 4.6, but the quality of code it generates is quite good. It was able to complete a fairly above average coding task on Astro in a couple of attempts. I noticed it works well when we detail it what it's supposed to do. For example, "Instead of using complex regex to extract data at multiple places, create a helper function and use it everywhere".
+
+I also loved the fact that opencode shows usage metrics such as tokens used and the amount spent on the API, which is quite helpful in keeping track of your usage and optimizing it accordingly.
+
+<figure>
+  <img src="https://res.cloudinary.com/dpz3botw9/image/upload/q_auto/f_auto/v1776430715/dev%20blog/open-code-setup-blog_ul3mhr.webp" alt="Open Code in Action" width="730" height="380" />
+  <figcaption style={{ textAlign: "center", fontStyle: "italic", marginTop: "0.5em" }}>
+    Here's a screenshot of the usage metrics.
+  </figcaption>
+</figure>
+
+Overall, it's a nice addition to my coding toolkit, and has been working well as a coding partner. It's not perfect, and there are still some issues with it, but it's definitely a step in the right direction for open source AI coding agents + models.
+
+Let me know your thoughts in the comments below, and if you've tried out OpenCode with Ollama Cloud, I'd love to hear about your experience as well!
