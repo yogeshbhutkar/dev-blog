@@ -92,4 +92,5 @@ export const PROJECTS = [
 export const SOCIALS = {
 	github: "https://github.com/yogeshbhutkar",
 	linked_in: "https://linkedin.com/in/yogeshbhutkar/",
+	x: "https://x.com/yogesh_bhutkar_",
 };

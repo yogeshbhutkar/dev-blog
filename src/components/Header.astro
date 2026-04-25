@@ -5,6 +5,7 @@ import SkipToContent from "./SkipToContent.astro";
 import { SOCIALS } from "@/lib/data.ts";
 import Github from "@/icons/github.astro";
 import LinkedIn from "@/icons/linked-in.astro";
+import X from "@/icons/x.astro";
 import SearchModal from "./search/SearchModal.astro";
 
 const isBlogPage = Astro.url.pathname.startsWith("/blog/");
@@ -34,6 +35,10 @@ const isBlogPage = Astro.url.pathname.startsWith("/blog/");
 			>
 			<a href={SOCIALS.github} target="_blank" aria-label="GitHub">
 				<Github height={16} width={16} />
+			</a>
+			<span class="pointer-events-none select-none">/</span>
+			<a href={SOCIALS.x} target="_blank" aria-label="X">
+				<X height={16} width={16} />
 			</a>
 			<span class="pointer-events-none select-none">/</span>
 			<a
