@@ -14,7 +14,7 @@ const { tags } = Astro.props;
 		<div class="mt-2 flex flex-wrap justify-center gap-2">
 			{tags.map((tag) => (
 				<a
-					class="text-muted/70 border-muted/20 hover:bg-muted/15 hover:text-foreground inline-block rounded-full border px-3 py-1 text-sm"
+					class="text-muted/70 hover:text-foreground inline-block rounded-full border border-neutral-300 bg-neutral-50 px-3 py-1 text-sm transition-transform duration-100 hover:bg-neutral-100 active:scale-[0.95] dark:border-neutral-800 dark:bg-neutral-900 dark:hover:bg-neutral-800"
 					href={`/blog/tags/${slugifyTag(tag)}`}
 				>
 					#{tag}
