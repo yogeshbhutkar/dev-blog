@@ -5,9 +5,10 @@ import {
 	SandpackProvider,
 	getSandpackCssText,
 } from "@codesandbox/sandpack-react";
-import { atomDark } from "@codesandbox/sandpack-themes";
-import { useEffect, useState } from "react";
-import PlayIcon from "./PlayIcon";
+import { atomDark, aquaBlue } from "@codesandbox/sandpack-themes";
+import { useEffect, useLayoutEffect, useState } from "react";
+import PlayIcon from "@/components/react/playground/PlayIcon";
+import { useTheme } from "@/components/react/hooks/use-theme";
 
 type SandpackTemplate = React.ComponentProps<
 	typeof SandpackProvider
@@ -44,6 +45,7 @@ export default function CodePlayground({
 }) {
 	const [isActive, setIsActive] = useState(false);
 	const [mountKey, setMountKey] = useState(0);
+	const { theme } = useTheme();
 
 	/**
 	 * Listen for the "astro:before-swap" event to deactivate the playground
@@ -64,7 +66,7 @@ export default function CodePlayground({
 			);
 	}, []);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (isActive) {
 			injectSandpackStyles();
 		}
@@ -75,7 +77,7 @@ export default function CodePlayground({
 			<SandpackProvider
 				key={mountKey}
 				files={files}
-				theme={atomDark}
+				theme={theme === "dark" ?  atomDark : aquaBlue}
 				template={template}
 				customSetup={{ dependencies }}
 			>
