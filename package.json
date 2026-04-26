@@ -22,7 +22,7 @@
 		"@types/react": "^19.2.2",
 		"@types/react-dom": "^19.2.2",
 		"astro": "6.1.9",
-		"astro-pagefind": "^1.8.5",
+		"astro-pagefind": "^1.8.6",
 		"motion": "^12.38.0",
 		"pagefind": "^1.4.0",
 		"prettier": "^3.6.2",
