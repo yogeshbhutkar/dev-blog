@@ -85,6 +85,7 @@ export default function CodePlayground({
 					style={{
 						borderRadius: "8px",
 						borderColor: "var(--color-border)",
+						display: "block",
 					}}
 				>
 					<SandpackCodeEditor
