@@ -4,19 +4,23 @@ import {
 	type CollectionEntry,
 	render,
 } from "astro:content";
+import type { MarkdownHeading } from "astro";
 import Layout from "@/layouts/Layout.astro";
 import PostTags from "@/components/PostTags.astro";
 import PostCoverImage from "@/components/PostCoverImage.astro";
 import PostInfo from "@/components/PostInfo.astro";
 import Comments from "@/components/Comments.astro";
-import type { MarkdownHeading } from "astro";
 import TableOfContents from "@/components/TableOfContents.astro";
 import ReadingIndicator from "@/components/ReadingIndicator.astro";
 import ScrollToTop from "@/components/ScrollToTop.astro";
-import { slide } from "astro:transitions";
+import SinglePostPagination from "@/components/SinglePostPagination.astro";
 
 export const getStaticPaths = async () => {
-	const blogs = await getCollection("blogs");
+	const blogs = (await getCollection("blogs")).sort(
+		(a, b) =>
+			new Date(b.data.publishedDate).getTime() -
+			new Date(a.data.publishedDate).getTime(),
+	);
 
 	const headings = await Promise.all(
 		blogs.map((entry) =>
@@ -29,7 +33,12 @@ export const getStaticPaths = async () => {
 			params: {
 				slug: blog.id,
 			},
-			props: { blog, headings: headings[index] },
+			props: {
+				blog,
+				headings: headings[index],
+				next: blogs[index - 1] ?? null,
+				prev: blogs[index + 1] ?? null,
+			},
 		};
 	});
 };
@@ -37,9 +46,11 @@ export const getStaticPaths = async () => {
 type Props = {
 	blog: CollectionEntry<"blogs">;
 	headings: MarkdownHeading[];
+	next: CollectionEntry<"blogs"> | null;
+	prev: CollectionEntry<"blogs"> | null;
 };
 
-const { blog, headings } = Astro.props;
+const { blog, headings, next, prev } = Astro.props;
 const { Content } = await render(blog);
 
 const { title, excerpt, coverImage, publishedDate, tags, author, avatar } =
@@ -53,11 +64,7 @@ const coverImageURL =
 
 <Layout title={title} description={excerpt} image={coverImageURL}>
 	<ReadingIndicator slot="reading-indicator" />
-	<main
-		id="main-content"
-		class="mx-auto"
-		transition:animate={slide({ duration: "0.3s" })}
-	>
+	<main id="main-content" class="mx-auto">
 		<article>
 			<PostCoverImage coverImage={coverImage} />
 			<div class="mx-auto my-3 w-[95%] md:max-w-xl lg:max-w-3xl">
@@ -80,10 +87,28 @@ const coverImageURL =
 				<TableOfContents headings={headings} />
 				<div class="md:min-w-3xl">
 					<div
-						class="prose text-muted prose-headings:text-foreground prose-a:text-blue-400 prose-img:rounded-lg prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-h5:text-sm prose-headings:font-medium prose-strong:text-foreground prose-figcaption:text-muted prose-p:mb-7 relative mx-auto mb-20 w-[95%] overflow-visible px-2 font-light sm:px-0 md:max-w-xl lg:max-w-3xl [&_:is(h3,h4,h5,h6)]:mt-10"
+						class="prose text-muted prose-headings:text-foreground prose-a:text-foreground prose-a:font-normal prose-img:rounded-lg prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-h5:text-sm prose-headings:font-medium prose-strong:text-foreground prose-figcaption:text-muted prose-p:mb-7 relative mx-auto my-5 overflow-visible px-4 font-light sm:px-0 md:max-w-xl lg:max-w-3xl [&_:is(h3,h4,h5,h6)]:mt-10"
 					>
 						<Content />
 					</div>
+
+					<div
+						role="separator"
+						class="text-muted/40 flex items-center justify-center py-5 select-none"
+					>
+						<span
+							aria-hidden="true"
+							class="font-serif text-lg tracking-[0.75em]"
+							>* * *</span
+						>
+					</div>
+
+					<SinglePostPagination
+						next={next}
+						prev={prev}
+						classname="my-14"
+					/>
+
 					<Comments />
 				</div>
 			</div>

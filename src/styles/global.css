@@ -131,7 +131,7 @@ Blur-Stagger Animation
 	from {
 		opacity: 0;
 		transform: translateY(20px);
-		filter: blur(10px);
+		filter: blur(2px);
 	}
 	to {
 		opacity: 1;

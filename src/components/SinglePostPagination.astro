@@ -1,0 +1,58 @@
+---
+import ChevronLeft from "@/icons/chevron-left.astro";
+import ChevronRight from "@/icons/chevron-right.astro";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+	next: CollectionEntry<"blogs"> | null;
+	prev: CollectionEntry<"blogs"> | null;
+	classname?: string;
+};
+
+const { next, prev, classname = "" } = Astro.props;
+---
+
+<nav
+	class={`justify-between gap-4 font-light mx-auto sm:flex hidden ${classname}`}
+>
+	{
+		prev && (
+			<a
+				href={`/blog/${prev.id}`}
+				class="group text-muted flex flex-col items-start gap-0.5 no-underline"
+			>
+				<div class="text-muted-foreground flex items-center gap-1 text-sm max-sm:text-xs">
+					<ChevronLeft
+						height={16}
+						width={16}
+						class="transition-transform duration-200 ease-out group-hover:-translate-x-1 group-hover:scale-110"
+					/>
+					<span>Previous</span>
+				</div>
+				<span class="inline-block max-w-[30ch] truncate max-sm:text-sm">
+					{prev.data.title}
+				</span>
+			</a>
+		)
+	}
+	{
+		next && (
+			<a
+				href={`/blog/${next.id}`}
+				class="group text-muted ml-auto flex flex-col items-end gap-0.5 no-underline"
+			>
+				<div class="text-muted-foreground flex items-center gap-0.5 text-sm max-sm:text-xs">
+					<span>Next</span>
+					<ChevronRight
+						height={16}
+						width={16}
+						class="transition-transform duration-200 ease-out group-hover:translate-x-1 group-hover:scale-110"
+					/>
+				</div>
+				<span class="inline-block max-w-[30ch] truncate max-sm:text-sm">
+					{next.data.title}
+				</span>
+			</a>
+		)
+	}
+</nav>

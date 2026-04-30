@@ -8,7 +8,7 @@ import LinkedIn from "@/icons/linked-in.astro";
 import X from "@/icons/x.astro";
 import SearchModal from "./search/SearchModal.astro";
 
-const isBlogPage = Astro.url.pathname.startsWith("/blog/");
+const isBlogPage = /^\/blog\/[^/]+\/?$/.test(Astro.url.pathname);
 ---
 
 <header
@@ -16,7 +16,7 @@ const isBlogPage = Astro.url.pathname.startsWith("/blog/");
 >
 	{isBlogPage && <SkipToContent slot="skip-to-content" />}
 	<nav
-		class="mx-auto flex h-16 items-center justify-between max-sm:px-4 sm:max-w-sm md:max-w-xl lg:max-w-2xl"
+		class={`mx-auto flex h-16 items-center justify-between max-sm:px-4 sm:max-w-sm md:max-w-xl ${isBlogPage ? "lg:max-w-3xl" : "lg:max-w-2xl"}`}
 	>
 		<a href="/" class="flex items-center space-x-1.5">
 			<Logo class="h-6 w-6 rounded-full p-0.5" />
