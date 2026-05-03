@@ -6,7 +6,9 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"storybook:dev": "storybook dev -p 8080",
+		"storybook:build": "storybook build"
 	},
 	"dependencies": {
 		"@astrojs/mdx": "5.0.4",
@@ -35,7 +37,10 @@
 		"tailwindcss": "^4.2.2"
 	},
 	"devDependencies": {
+		"@storybook-astro/framework": "^1.1.0",
+		"@storybook/builder-vite": "^10.3.6",
 		"@tailwindcss/typography": "^0.5.19",
+		"storybook": "^10.3.6",
 		"typescript": "^5.9.3"
 	}
 }
