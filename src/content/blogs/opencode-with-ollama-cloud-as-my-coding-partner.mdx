@@ -9,18 +9,22 @@ coverImage: https://res.cloudinary.com/dpz3botw9/image/upload/q_auto/f_auto/v177
 excerpt: After cycling through countless AI tools, OpenCode paired with Ollama Cloud is the first setup that actually feels like pair programming. Less autocorrect, more patient coworker.
 ---
 
+import { Image } from "@/components/mdx";
+
 ## Introduction
 
 After working with GitHub Copilot and Claude extensively, I decided to test out some open source models, especially after hearing about them competing with frontier models. Specifically, at the time of writing this, models such as GLM 5.1, Kimi-k2.5, and Minimax-m2.7, amongst several others, have gained quite a bit of popularity. And rightly so—for instance, the GLM 5.1 model has proven to be quite capable in Z.ai's benchmarks.
 
 In their benchmarks for SWE-Bench Pro, which tests complex engineering tasks, the GLM 5.1 model is quite a bit ahead of the legendary Opus 4.6, and it's neck and neck in other benchmarks. It's also decently cost-optimized.
 
-<figure>
-  <img src="https://res.cloudinary.com/dpz3botw9/image/upload/q_auto/f_auto/v1776166447/dev%20blog/ollama-swe-benchmark_vn702i.webp" alt="SWE-Bench Pro" width="730" height="380" />
-  <figcaption style={{ textAlign: "center", fontStyle: "italic", marginTop: "0.5em" }}>
-    Courtesy: Z.ai's benchmarks, which can be found <a href="https://z.ai/blog/glm-5.1" target="_blank" rel="noopener noreferrer">here</a>.
-  </figcaption>
-</figure>
+<Image
+	src="https://res.cloudinary.com/dpz3botw9/image/upload/q_auto/f_auto/v1776166447/dev%20blog/ollama-swe-benchmark_vn702i.webp" 
+	alt="SWE-Bench Pro" 
+	width="730" 
+	height="380"
+>
+Courtesy: <a href="https://z.ai/blog/glm-5.1" target="_blank" rel="noopener noreferrer">Z.ai's benchmark</a>.
+</Image>
 
 I therefore decided to try out these models to determine how they perform as a daily driver for me.
 
@@ -54,12 +58,14 @@ Although, in my experience, I found it to be a bit slower than Opus 4.6, but the
 
 I also loved the fact that opencode shows usage metrics such as tokens used and the amount spent on the API, which is quite helpful in keeping track of your usage and optimizing it accordingly.
 
-<figure>
-  <img src="https://res.cloudinary.com/dpz3botw9/image/upload/q_auto/f_auto/v1776430715/dev%20blog/open-code-setup-blog_ul3mhr.webp" alt="Open Code in Action" width="730" height="380" />
-  <figcaption style={{ textAlign: "center", fontStyle: "italic", marginTop: "0.5em" }}>
-    Here's a screenshot of the usage metrics.
-  </figcaption>
-</figure>
+<Image
+	src="https://res.cloudinary.com/dpz3botw9/image/upload/q_auto/f_auto/v1776430715/dev%20blog/open-code-setup-blog_ul3mhr.webp" 
+	alt="Open Code Usage Metrics" 
+	width="730" 
+	height="380"
+>
+	Screenshot of the usage metrics.
+</Image>
 
 Overall, it's a nice addition to my coding toolkit, and has been working well as a coding partner. It's not perfect, and there are still some issues with it, but it's definitely a step in the right direction for open source AI coding agents + models.
 

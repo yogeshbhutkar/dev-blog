@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import {
+	TEXT_SIZES,
+	TEXT_VARIANTS,
+	TEXT_WEIGHTS,
+	type TextAs,
+	type TextSize,
+	type TextVariant,
+	type TextWeight,
+} from "@/components/ui/text/types";
+
+type BaseAttributes = HTMLAttributes<"p"> &
+	HTMLAttributes<"span"> &
+	HTMLAttributes<"h1">;
+
+interface Props extends BaseAttributes {
+	as?: TextAs;
+	weight?: TextWeight;
+	size?: TextSize;
+	className?: string;
+	variant?: TextVariant;
+}
+
+const {
+	as: As = "p",
+	weight = "normal",
+	size = "md",
+	className = "",
+	variant = "default",
+	...rest
+}: Props = Astro.props;
+---
+
+<As
+	class:list={[
+		TEXT_SIZES[size],
+		TEXT_WEIGHTS[weight],
+		TEXT_VARIANTS[variant],
+		className,
+	]}
+	{...rest}
+>
+	<slot />
+</As>
