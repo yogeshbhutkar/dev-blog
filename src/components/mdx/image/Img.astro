@@ -1,0 +1,135 @@
+---
+import { Image } from "astro:assets";
+import {
+	DEFAULT_COVER_IMAGE_HEIGHT,
+	DEFAULT_COVER_IMAGE_WIDTH,
+} from "@/constants";
+
+interface Props {
+	src: string;
+	alt: string;
+	height?: number;
+	width?: number;
+	className?: string;
+}
+
+const {
+	src,
+	alt,
+	height = DEFAULT_COVER_IMAGE_HEIGHT,
+	width = DEFAULT_COVER_IMAGE_WIDTH,
+	className = "",
+}: Props = Astro.props;
+---
+
+<div data-lightbox-root>
+	<figure>
+		<Image
+			src={src}
+			alt={alt}
+			width={width}
+			height={height}
+			class:list={[className, "block lg:hidden"]}
+		/>
+
+		<!-- Only render the image within button for devices (large) where zoom-in is implemented -->
+		<button
+			type="button"
+			class="hidden w-full cursor-zoom-in bg-transparent p-0 lg:block"
+			aria-label={`Open enlarged image: ${alt}`}
+			data-lightbox-trigger
+		>
+			<Image
+				src={src}
+				alt={alt}
+				width={width}
+				height={height}
+				class:list={[className, "m-0! w-full object-cover"]}
+			/>
+		</button>
+
+		{
+			Astro.slots.has("default") && (
+				<figcaption class="text-center">
+					<slot />
+				</figcaption>
+			)
+		}
+	</figure>
+
+	<dialog
+		class="lightbox-dialog w-[min(80vw,calc(100vw-2rem))] max-w-[80vw] rounded-md border-none bg-transparent p-0 outline-none backdrop:bg-black/50 backdrop:backdrop-blur-sm"
+		aria-label={`Zoomed view of ${alt}`}
+		data-lightbox-dialog
+	>
+		<Image
+			src={src}
+			alt={alt}
+			width={width}
+			height={height}
+			class="lightbox-image m-0 block h-auto max-h-[80vh] w-full max-w-[80vw] cursor-zoom-out rounded-md object-cover"
+		/>
+	</dialog>
+</div>
+
+<style>
+	.lightbox-image {
+		transition: transform 200ms ease-out;
+	}
+
+	.lightbox-dialog[open] .lightbox-image {
+		opacity: 1;
+		transform: scale(1);
+
+		@starting-style {
+			opacity: 0;
+			transform: scale(0.75);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.lightbox-image {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	function initLightbox() {
+		const triggers = document.querySelectorAll<HTMLButtonElement>(
+			"[data-lightbox-trigger]",
+		);
+
+		triggers.forEach((trigger) => {
+			// Guard against multiple bindings.
+			if (trigger.dataset.lightboxBound === "true") return;
+			trigger.dataset.lightboxBound = "true";
+
+			const root = trigger.closest("[data-lightbox-root]");
+			const dialog = root?.querySelector<HTMLDialogElement>(
+				"[data-lightbox-dialog]",
+			);
+
+			if (!dialog) return;
+
+			trigger.addEventListener("click", () => {
+				/* 
+					Only open the lightbox on larger screens, where it makes sense.
+					On smaller screens, the image is already full-width,
+					so a lightbox isn't necessary. 
+					*/
+				if (!window.matchMedia("(min-width: 1024px)").matches)
+					return;
+
+				dialog.showModal();
+			});
+
+			dialog.addEventListener("click", () => {
+				dialog.close();
+			});
+		});
+	}
+
+	initLightbox();
+	document.addEventListener("astro:after-swap", initLightbox);
+</script>
